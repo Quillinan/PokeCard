@@ -1,2 +1,2 @@
-# PokeCard
-Projeto full stack de um marketplace de cards de Pokemon.
+# PokeCard-front
+Front-end do projeto de um marketplace de cards de Pokemon.
