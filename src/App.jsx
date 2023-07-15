@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import CapePage from "./pages/CapePage";
+import MenuPage from "./pages/MenuPage";
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<CapePage />} />
+          <Route path="/menu" element={<MenuPage />} />
         </Routes>
       </BrowserRouter>
     </PagesContainer>
@@ -16,5 +18,12 @@ export default function App() {
 
 const PagesContainer = styled.main`
   background-color: #e2e2e2;
-  max-height: 100vh;
+  width: calc(100vw - 50px);
+  height: calc(100vh - 50px);
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;

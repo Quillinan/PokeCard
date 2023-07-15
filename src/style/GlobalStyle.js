@@ -15,7 +15,10 @@ const GlobalStyle = createGlobalStyle`
         color: #151515;
         font-size: 32px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
-}
+    }
+    h1{
+        font-size: 36px;
+    }
 `;
 
 export default GlobalStyle;
