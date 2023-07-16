@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CapePage from "./pages/CapePage";
 import MenuPage from "./pages/MenuPage";
 import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
           <Route path="/" element={<CapePage />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/cadastro" element={<SignupPage />} />
         </Routes>
       </BrowserRouter>
     </PagesContainer>

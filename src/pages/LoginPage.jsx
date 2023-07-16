@@ -30,11 +30,11 @@ export default function LoginPage() {
   };
 
   const handleSignupClick = () => {
-    navigate("/signup");
+    navigate("/cadastro");
   };
 
   return (
-    <CapeContainer>
+    <LoginContainer>
       <img src="/Logo.svg" alt="" />
       <BoxContainer>
         <div>
@@ -59,11 +59,11 @@ export default function LoginPage() {
         </h1>
         <button onClick={handleLogin}>ENTRAR</button>
       </BoxContainer>
-    </CapeContainer>
+    </LoginContainer>
   );
 }
 
-const CapeContainer = styled.div`
+const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -112,6 +112,7 @@ const BoxContainer = styled.div`
   .signup {
     text-align: center;
     text-decoration: underline;
+    cursor: pointer;
   }
 
   @media (min-width: 601px) and (min-height: 601px) {
