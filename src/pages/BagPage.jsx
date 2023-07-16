@@ -4,40 +4,9 @@ import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import TopBar from "../components/TopBar";
 
-export default function MenuPage() {
+export default function BagPage() {
   const [cards, setCards] = useState([]);
   const token = localStorage.getItem("token");
-
-  const handleAddToCart = async (card) => {
-    const confirmAddToCart = window.confirm(
-      `Deseja adicionar a carta ${card.name} no seu carrinho?`
-    );
-    if (confirmAddToCart) {
-      try {
-        const response = await axios.post(
-          `${import.meta.env.VITE_API_URL}/cart/add-to-cart`,
-          {
-            cardId: card._id,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        if (response.status === 200) {
-          alert("Carta adicionada no seu carrinho");
-        }
-      } catch (error) {
-        if (error.response.status === 404) {
-          alert("Carta não encontrada");
-        } else {
-          console.log(error.response.data);
-          // Tratar outros erros aqui
-        }
-      }
-    }
-  };
 
   const handleRemoveFromCart = async (card) => {
     const confirmRemoveFromCart = window.confirm(
@@ -48,13 +17,11 @@ export default function MenuPage() {
     // Remover do carrinho
   };
 
-  const isInCart = (card) => {};
-
   useEffect(() => {
     const fetchCards = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/card/cards`,
+          `${import.meta.env.VITE_API_URL}/card/cardsbycart`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -74,8 +41,8 @@ export default function MenuPage() {
     <MenuContainer>
       <TopBar />
       <Line>
-        <img src="PokeballIcon.svg" alt="" />
-        <h1>Cards</h1>
+        <img src="BagIcon.svg" alt="" />
+        <h1>Mochila</h1>
       </Line>
       <SearchBar />
       <CardContainer>
@@ -86,15 +53,13 @@ export default function MenuPage() {
           </NoResult>
         ) : (
           cards.map((card) => (
-            <Card key={card._id} onClick={() => handleAddToCart(card)}>
+            <Card key={card._id}>
               <h2 className="name">{card.name}</h2>
               <img className="cardImg" src={"PikachuImage.svg"} alt="" />
               <h2>R$ {card.value}</h2>
-              {isInCart(card) && (
-                <div className="overlay" onClick={handleRemoveFromCart}>
-                  <img src="Multiply.svg" alt="" />
-                </div>
-              )}
+              <div className="overlay" onClick={handleRemoveFromCart}>
+                <img src="Multiply.svg" alt="" />
+              </div>
             </Card>
           ))
         )}
@@ -136,6 +101,8 @@ const NoResult = styled.div`
   img {
     width: 100%;
     height: 100%;
+    max-width: 400px;
+    max-height: 400px;
   }
   @media (max-width: 471px) {
     img {

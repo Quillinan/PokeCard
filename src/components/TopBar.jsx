@@ -8,7 +8,7 @@ const TopBar = ({}) => {
     navigate("/menu");
   };
   const handleCartClick = () => {
-    navigate("/carrinho");
+    navigate("/mochila");
   };
   const handleOldCartsClick = () => {
     navigate("/compras");
@@ -56,6 +56,7 @@ const TopBarContainer = styled.div`
   background-color: #fff06d;
   justify-content: space-between;
   width: 100vw;
+  height: 60px;
   top: 0px;
   div {
     display: flex;
