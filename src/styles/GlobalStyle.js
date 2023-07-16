@@ -22,6 +22,11 @@ const GlobalStyle = createGlobalStyle`
   h1 {
     font-size: 36px;
   }
+  h2 {
+    font-family: 'Poppins';
+    font-size: 18px;
+  }
+  
 `;
 
 const StylizedInput = styled.input`

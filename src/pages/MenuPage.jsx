@@ -1,7 +1,32 @@
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import SearchBar from "../components/SearchBar";
+import axios from "axios";
 
-export default function MenuPage() {
+const MenuPage = () => {
+  const [cards, setCards] = useState([]);
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/card/cards`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setCards(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCards();
+  }, []);
+
   return (
     <MenuContainer>
       <Line>
@@ -10,30 +35,19 @@ export default function MenuPage() {
       </Line>
       <SearchBar />
       <CardContainer>
-        <Card>
-          <h1>Pikachu</h1>
-          <img src="PikachuImage.svg" alt="" />
-        </Card>
-        <Card>
-          <h1>Pikachu</h1>
-          <img src="PikachuImage.svg" alt="" />
-        </Card>
-        <Card>
-          <h1>Pikachu</h1>
-          <img src="PikachuImage.svg" alt="" />
-        </Card>
-        <Card>
-          <h1>Pikachu</h1>
-          <img src="PikachuImage.svg" alt="" />
-        </Card>
-        <Card>
-          <h1>Pikachu</h1>
-          <img src="PikachuImage.svg" alt="" />
-        </Card>
+        {cards.map((card) => (
+          <Card key={card._id}>
+            <h2 className="name">{card.name}</h2>
+            <img src={"PikachuImage.svg"} alt="" />
+            <h2>R$ {card.value}</h2>
+          </Card>
+        ))}
       </CardContainer>
     </MenuContainer>
   );
-}
+};
+
+export default MenuPage;
 
 const MenuContainer = styled.div`
   display: flex;
@@ -80,7 +94,7 @@ const CardContainer = styled.div`
 const Card = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column;
 
   background: #fff;
@@ -88,8 +102,14 @@ const Card = styled.div`
   border: 1px solid #000;
 
   width: 150px;
-  height: 176px;
+  height: 200px;
+  .name {
+    align-self: flex-start;
+    margin-left: 10px;
+  }
   img {
-    width: 90%;
+    border: #000 1px solid;
+    width: 100%;
+    height: 70%;
   }
 `;
