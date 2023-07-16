@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import CapePage from "./pages/CapePage";
-import MenuPage from "./pages/MenuPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import MenuPage from "./pages/MenuPage";
 
 export default function App() {
   return (
@@ -11,9 +11,9 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<CapePage />} />
-          <Route path="/menu" element={<MenuPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/cadastro" element={<SignupPage />} />
+          <Route path="/menu" element={<MenuPage />} />
         </Routes>
       </BrowserRouter>
     </PagesContainer>

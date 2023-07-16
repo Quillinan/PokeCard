@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import SearchBar from "../components/SearchBar";
 import axios from "axios";
+import TopBar from "../components/TopBar";
 
-const MenuPage = () => {
+export default function MenuPage() {
   const [cards, setCards] = useState([]);
   const token = localStorage.getItem("token");
 
@@ -29,6 +30,7 @@ const MenuPage = () => {
 
   return (
     <MenuContainer>
+      <TopBar />
       <Line>
         <img src="PokeballIcon.svg" alt="" />
         <h1>Cards</h1>
@@ -45,9 +47,7 @@ const MenuPage = () => {
       </CardContainer>
     </MenuContainer>
   );
-};
-
-export default MenuPage;
+}
 
 const MenuContainer = styled.div`
   display: flex;
