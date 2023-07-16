@@ -1,12 +1,32 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { StylizedInput } from "../styles/GlobalStyle";
+import { useState } from "react";
+import axios from "axios";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    navigate("/menu");
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/user/signin`,
+        {
+          email,
+          password,
+        }
+      );
+      console.log(response);
+      const { token } = response.data;
+      localStorage.setItem("token", token);
+      console.log(token);
+      navigate("/menu");
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
 
   const handleSignupClick = () => {
@@ -20,9 +40,19 @@ export default function LoginPage() {
         <div>
           <h1 className="title">LOGIN</h1>
           <h1>E-mail</h1>
-          <StylizedInput type="text" placeholder="Nome ou Email" />
+          <StylizedInput
+            type="email"
+            placeholder="Nome ou Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <h1 className="password">Senha</h1>
-          <StylizedInput type="text" placeholder="Senha" />
+          <StylizedInput
+            placeholder="Senha"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
         <h1 className="signup" onClick={handleSignupClick}>
           Não tem conta? Registre-se
