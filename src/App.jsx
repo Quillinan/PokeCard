@@ -4,6 +4,7 @@ import CapePage from "./pages/CapePage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MenuPage from "./pages/MenuPage";
+import BagPage from "./pages/BagPage";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/cadastro" element={<SignupPage />} />
           <Route path="/menu" element={<MenuPage />} />
+          <Route path="/mochila" element={<BagPage />} />
         </Routes>
       </BrowserRouter>
     </PagesContainer>

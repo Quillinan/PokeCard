@@ -26,6 +26,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Poppins';
     font-size: 18px;
   }
+  img{
+    width: 36px;
+    height: 36px;
+  }
   
 `;
 
