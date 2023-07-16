@@ -26,38 +26,42 @@ const TopBar = ({}) => {
 
   return (
     <TopBarContainer>
-      <img
-        className="first"
-        onClick={handleMenuClick}
-        src="PokeballIcon.svg"
-        alt=""
-      />
-      <div>
-        <img onClick={handleCartClick} src="BagIcon.svg" alt="" />
-        <img onClick={handleOldCartsClick} src="CapIcon.svg" alt="" />
-        <img onClick={handleProfileClick} src="UserIcon.svg" alt="" />
+      <IconsContainer>
         <img
-          onClick={handleLogoutClick}
-          className="last"
-          src="PikachuIcon.svg"
+          className="first"
+          onClick={handleMenuClick}
+          src="PokeballIcon.svg"
           alt=""
         />
-      </div>
+        <div>
+          <img onClick={handleCartClick} src="BagIcon.svg" alt="" />
+          <img onClick={handleOldCartsClick} src="CapIcon.svg" alt="" />
+          <img onClick={handleProfileClick} src="UserIcon.svg" alt="" />
+          <img
+            onClick={handleLogoutClick}
+            className="last"
+            src="PikachuIcon.svg"
+            alt=""
+          />
+        </div>
+      </IconsContainer>
     </TopBarContainer>
   );
 };
 
 const TopBarContainer = styled.div`
+  background-color: #fff06d;
   position: fixed;
   top: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: #fff06d;
-  justify-content: space-between;
-  width: 100vw;
   height: 60px;
   top: 0px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  width: calc(100vw - 90px);
+  padding: 0 45px;
   div {
     display: flex;
     flex-direction: row;
@@ -67,12 +71,16 @@ const TopBarContainer = styled.div`
   img {
     cursor: pointer;
   }
-  .first {
-    margin-left: 45px;
-  }
-  .last {
-    margin-right: 45px;
-  }
+`;
+
+const IconsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  max-width: 806px;
 `;
 
 export default TopBar;
