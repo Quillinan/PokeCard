@@ -30,10 +30,7 @@ const CapeContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
-  .image {
-    margin-top: 25px;
-    margin-bottom: 40px;
-  }
+  width: 100%;
 `;
 
 const BoxContainer = styled.div`
@@ -43,10 +40,18 @@ const BoxContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
-  height: 100vh;
-  width: 100vw;
+
   max-width: 600px;
   max-height: 675px;
+
+  height: calc(100% - 40px);
+  width: calc(100% - 40px);
+  padding: 20px;
+
+  img {
+    width: fit-content;
+    height: fit-content;
+  }
   @media (min-width: 676px) and (min-height: 601px) {
     border-radius: 10px;
     border: 1px solid #151515;
