@@ -14,22 +14,21 @@ export default function ProfilePage() {
   };
 
   const getSoldCards = async () => {
-    // try {
-    //   const response = await axios.get(
-    //     `${import.meta.env.VITE_API_URL}/card/user-cards`,
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     }
-    //   );
-    //   const filteredCards = response.data.filter((card) => card.sold);
-
-    //   setCards(filteredCards);
-    // } catch (error) {
-    //   alert("Desculpe, ocorreu um erro inesperado");
-    //   console.log(error);
-    // }
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/card/user-cards`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const filteredCards = response.data.filter((card) => card.sold);
+      setCards(filteredCards);
+    } catch (error) {
+      alert("Desculpe, ocorreu um erro inesperado");
+      console.log(error);
+    }
     console.log("Busca cartas vendidas");
   };
 
@@ -143,6 +142,7 @@ const CardContainer = styled.div`
     gap: 30px;
     padding: 15px;
     max-width: 215px;
+    max-height: 275px;
     overflow-y: auto;
   }
 `;

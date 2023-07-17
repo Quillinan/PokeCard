@@ -135,7 +135,7 @@ export default function MenuPage() {
   const addCard = async (card) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/card/addcard`,
+        `${import.meta.env.VITE_API_URL}/card/add-card`,
         {
           name: card.name,
           value: Number(card.value),
