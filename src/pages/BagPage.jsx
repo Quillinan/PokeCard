@@ -9,32 +9,91 @@ export default function BagPage() {
   const token = localStorage.getItem("token");
 
   const handleRemoveFromCart = async (card) => {
-    const confirmRemoveFromCart = window.confirm(
-      `Deseja remover a carta ${card.name} do seu carrinho?`
+    const confirmAddToCart = window.confirm(
+      `Deseja remover a carta ${card.name} no seu carrinho?`
     );
-    if (confirmRemoveFromCart) {
+    if (confirmAddToCart) {
+      console.log(token);
+      try {
+        const response = await axios.delete(
+          `${import.meta.env.VITE_API_URL}/cart/remove-from-cart`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            data: {
+              cardId: card._id,
+            },
+          }
+        );
+        if (response.status === 200) {
+          alert("Carta removida do seu carrinho");
+          updateCardsList();
+        }
+      } catch (error) {
+        if (error.response.status === 404) {
+          alert("Erro com seu carrinho");
+        } else {
+          alert("Desculpe, ocorreu um erro inesperado");
+          console.log(error.response.data);
+        }
+      }
     }
-    // Remover do carrinho
   };
 
-  useEffect(() => {
-    const fetchCards = async () => {
+  const updateCardsList = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/cart/get-cards-on-cart`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 200 || !response.data.cards.length) {
+        setCards(response.data.cards);
+      }
+    } catch (error) {
+      alert("Desculpe, ocorreu um erro inesperado");
+      console.log(error);
+    }
+  };
+
+  const handleCheckout = async () => {
+    const confirmAddToCart = window.confirm(`Deseja finalizar o pedido?`);
+    if (confirmAddToCart) {
+      console.log(token);
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/card/cardsbycart`,
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URL}/cart/checkout`,
+          {},
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-        setCards(response.data);
+        if (response.status === 200) {
+          const newToken = response.data.token;
+          console.log(newToken);
+          // localStorage.setItem("token", newToken);
+          alert("Compra finalizada com sucesso");
+          updateCardsList();
+        }
       } catch (error) {
-        console.log(error);
+        if (error.response.status === 404) {
+          alert("Erro com seu carrinho");
+        } else {
+          alert("Desculpe, ocorreu um erro inesperado");
+          console.log(error.response.data);
+        }
       }
-    };
+    }
+  };
 
-    fetchCards();
+  useEffect(() => {
+    updateCardsList();
   }, []);
 
   return (
@@ -57,13 +116,17 @@ export default function BagPage() {
               <h2 className="name">{card.name}</h2>
               <img className="cardImg" src={"PikachuImage.svg"} alt="" />
               <h2>R$ {card.value}</h2>
-              <div className="overlay" onClick={handleRemoveFromCart}>
+              <div
+                className="overlay"
+                onClick={() => handleRemoveFromCart(card)}
+              >
                 <img src="Multiply.svg" alt="" />
               </div>
             </Card>
           ))
         )}
       </CardContainer>
+      <button onClick={handleCheckout}>Finalizar pedido</button>
     </MenuContainer>
   );
 }
@@ -115,7 +178,6 @@ const NoResult = styled.div`
 const CardContainer = styled.div`
   background-color: #fffdc7;
   width: calc(100%-60px);
-  height: 100%;
 
   display: flex;
   flex-wrap: wrap;
@@ -147,6 +209,7 @@ const Card = styled.div`
 
   width: 150px;
   height: 200px;
+
   .name {
     align-self: flex-start;
     margin-left: 10px;

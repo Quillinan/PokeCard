@@ -7,6 +7,7 @@ import TopBar from "../components/TopBar";
 export default function MenuPage() {
   const [cards, setCards] = useState([]);
   const token = localStorage.getItem("token");
+  const [cartCards, setCartCards] = useState([]);
 
   const handleAddToCart = async (card) => {
     const confirmAddToCart = window.confirm(
@@ -27,13 +28,15 @@ export default function MenuPage() {
         );
         if (response.status === 200) {
           alert("Carta adicionada no seu carrinho");
+          updateCardsList();
+          fetchCards();
         }
       } catch (error) {
         if (error.response.status === 404) {
           alert("Carta não encontrada");
         } else {
+          alert("Desculpe, ocorreu um erro inesperado");
           console.log(error.response.data);
-          // Tratar outros erros aqui
         }
       }
     }
@@ -43,30 +46,79 @@ export default function MenuPage() {
     const confirmRemoveFromCart = window.confirm(
       `Deseja remover a carta ${card.name} do seu carrinho?`
     );
+
     if (confirmRemoveFromCart) {
-    }
-    // Remover do carrinho
-  };
-
-  const isInCart = (card) => {};
-
-  useEffect(() => {
-    const fetchCards = async () => {
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/card/cards`,
+        const response = await axios.delete(
+          `${import.meta.env.VITE_API_URL}/cart/remove-from-cart`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
+            data: {
+              cardId: card._id,
+            },
           }
         );
-        setCards(response.data);
+        if (response.status === 200) {
+          alert("Carta removida do carrinho com sucesso");
+          updateCardsList();
+          fetchCards();
+        }
+        console.log(response.data);
       } catch (error) {
-        console.log(error);
+        if (error.response.status === 404) {
+          alert("Carta ou Carrinho não encontrados");
+        } else {
+          alert("Desculpe, ocorreu um erro inesperado");
+          console.log(error.response.data);
+        }
       }
-    };
+    }
+  };
 
+  const fetchCards = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/card/cards`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setCards(response.data);
+    } catch (error) {
+      alert("Desculpe, ocorreu um erro inesperado");
+      console.log(error);
+    }
+  };
+
+  const updateCardsList = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/cart/get-cards-on-cart`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 200 || !response.data.cards.length) {
+        setCartCards(response.data.cards);
+      }
+    } catch (error) {
+      alert("Desculpe, ocorreu um erro inesperado");
+      console.log(error);
+    }
+  };
+
+  const isInCart = (card) => {
+    return cartCards.some((cartCard) => cartCard._id === card._id);
+  };
+
+  useEffect(() => {
+    updateCardsList();
     fetchCards();
   }, []);
 
@@ -86,12 +138,20 @@ export default function MenuPage() {
           </NoResult>
         ) : (
           cards.map((card) => (
-            <Card key={card._id} onClick={() => handleAddToCart(card)}>
+            <Card key={card._id}>
               <h2 className="name">{card.name}</h2>
-              <img className="cardImg" src={"PikachuImage.svg"} alt="" />
+              <img
+                className="cardImg"
+                onClick={() => handleAddToCart(card)}
+                src={"PikachuImage.svg"}
+                alt=""
+              />
               <h2>R$ {card.value}</h2>
               {isInCart(card) && (
-                <div className="overlay" onClick={handleRemoveFromCart}>
+                <div
+                  className="overlay"
+                  onClick={() => handleRemoveFromCart(card)}
+                >
                   <img src="Multiply.svg" alt="" />
                 </div>
               )}
@@ -148,7 +208,6 @@ const NoResult = styled.div`
 const CardContainer = styled.div`
   background-color: #fffdc7;
   width: calc(100%-60px);
-  height: 100%;
 
   display: flex;
   flex-wrap: wrap;
@@ -180,6 +239,7 @@ const Card = styled.div`
 
   width: 150px;
   height: 200px;
+
   .name {
     align-self: flex-start;
     margin-left: 10px;
