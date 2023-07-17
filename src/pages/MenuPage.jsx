@@ -117,6 +117,44 @@ export default function MenuPage() {
     return cartCards.some((cartCard) => cartCard._id === card._id);
   };
 
+  const handleAddCard = () => {
+    const confirmAddCard = window.confirm(`Deseja adicionar uma carta?`);
+    if (confirmAddCard) {
+      const cardName = prompt(`Qual o nome da carta?`);
+      const cardValue = prompt(`Qual o valor da carta?`);
+      const card = {
+        name: cardName,
+        value: cardValue,
+      };
+      addCard(card);
+    }
+  };
+
+  const addCard = async (card) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/card/addcard`,
+        {
+          name: card.name,
+          value: Number(card.value),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        alert("Carta adicionada com sucesso");
+        fetchCards();
+      }
+    } catch (error) {
+      alert("Desculpe, ocorreu um erro inesperado");
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     updateCardsList();
     fetchCards();
@@ -159,6 +197,7 @@ export default function MenuPage() {
           ))
         )}
       </CardContainer>
+      <button onClick={handleAddCard}>Adicionar carta</button>
     </MenuContainer>
   );
 }
