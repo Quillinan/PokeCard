@@ -6,6 +6,7 @@ import SignupPage from "./pages/SignupPage";
 import MenuPage from "./pages/MenuPage";
 import BagPage from "./pages/BagPage";
 import ShopPage from "./pages/ShopPage";
+import ProfilePage from "./pages/ProfilePage";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/mochila" element={<BagPage />} />
           <Route path="/compras" element={<ShopPage />} />
+          <Route path="/perfil" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
     </PagesContainer>
