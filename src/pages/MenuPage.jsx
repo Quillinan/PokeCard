@@ -4,11 +4,13 @@ import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import TopBar from "../components/TopBar";
 import CardItem from "../components/Card";
+import { useNavigate } from "react-router-dom";
 
 export default function MenuPage() {
   const [cards, setCards] = useState([]);
   const token = localStorage.getItem("token");
   const [cartCards, setCartCards] = useState([]);
+  const navigate = useNavigate();
 
   const handleAddToCart = async (card) => {
     if (isInCart(card)) {
@@ -163,6 +165,10 @@ export default function MenuPage() {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("token") == undefined) {
+      navigate("/");
+      return;
+    }
     updateCardsList();
     fetchCards();
   }, []);

@@ -4,10 +4,12 @@ import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import TopBar from "../components/TopBar";
 import CardItem from "../components/Card";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfilePage() {
   const [cards, setCards] = useState([]);
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   const handleUpdate = () => {
     getSoldCards();
@@ -46,6 +48,10 @@ export default function ProfilePage() {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("token") == undefined) {
+      navigate("/");
+      return;
+    }
     getSoldCards();
   }, []);
 

@@ -4,10 +4,12 @@ import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import TopBar from "../components/TopBar";
 import CardItem from "../components/Card";
+import { useNavigate } from "react-router-dom";
 
 export default function BagPage() {
   const [cards, setCards] = useState([]);
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   const handleRemoveFromCart = async (card) => {
     const confirmAddToCart = window.confirm(
@@ -102,6 +104,10 @@ export default function BagPage() {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("token") == undefined) {
+      navigate("/");
+      return;
+    }
     updateCardsList();
   }, []);
 

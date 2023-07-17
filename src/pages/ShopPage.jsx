@@ -3,11 +3,13 @@ import styled from "styled-components";
 import axios from "axios";
 import TopBar from "../components/TopBar";
 import CardItem from "../components/Card";
+import { useNavigate } from "react-router-dom";
 
 export default function ShopPage() {
   const token = localStorage.getItem("token");
   const [carts, setCarts] = useState([]);
   const [cartCards, setCartCards] = useState([]);
+  const navigate = useNavigate();
 
   const getActiveCarts = async () => {
     console.log(token);
@@ -91,6 +93,10 @@ export default function ShopPage() {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("token") == undefined) {
+      navigate("/");
+      return;
+    }
     getActiveCarts();
     updateCardsList();
   }, []);
