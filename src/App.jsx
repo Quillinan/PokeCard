@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import MenuPage from "./pages/MenuPage";
 import BagPage from "./pages/BagPage";
+import ShopPage from "./pages/ShopPage";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/cadastro" element={<SignupPage />} />
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/mochila" element={<BagPage />} />
+          <Route path="/compras" element={<ShopPage />} />
         </Routes>
       </BrowserRouter>
     </PagesContainer>
@@ -24,9 +26,9 @@ export default function App() {
 
 const PagesContainer = styled.main`
   background-color: #e2e2e2;
-  width: calc(100vw - 50px);
-  height: calc(100vh - 50px);
-  padding: 25px;
+  width: calc(100vw - 40px);
+  height: calc(100vh - 40px);
+  padding: 20px;
 
   display: flex;
   flex-direction: column;

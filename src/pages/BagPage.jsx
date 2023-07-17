@@ -97,7 +97,7 @@ export default function BagPage() {
   }, []);
 
   return (
-    <MenuContainer>
+    <BagContainer>
       <TopBar />
       <Line>
         <img src="BagIcon.svg" alt="" />
@@ -127,11 +127,11 @@ export default function BagPage() {
         )}
       </CardContainer>
       <button onClick={handleCheckout}>Finalizar pedido</button>
-    </MenuContainer>
+    </BagContainer>
   );
 }
 
-const MenuContainer = styled.div`
+const BagContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -141,11 +141,13 @@ const MenuContainer = styled.div`
   max-width: 806px;
   padding: 20px;
   gap: 40px;
-  margin-top: 60px;
+  margin-top: 50px;
   @media (max-width: 471px) {
-    padding: 0;
-    width: 100%;
     height: 100%;
+    width: 100%;
+    padding: 0px;
+    gap: 20px;
+    overflow-y: auto;
   }
 `;
 
@@ -166,8 +168,6 @@ const NoResult = styled.div`
   img {
     width: 100%;
     height: 100%;
-    max-width: 400px;
-    max-height: 400px;
   }
   @media (max-width: 471px) {
     img {
@@ -187,6 +187,7 @@ const CardContainer = styled.div`
 
   gap: 16px;
   padding: 30px;
+  overflow-y: auto;
 
   border-radius: 10px;
   border: 1px solid #151515;
@@ -194,8 +195,9 @@ const CardContainer = styled.div`
   @media (max-width: 471px) {
     justify-content: center;
     gap: 30px;
-    padding: 0;
-    width: 100%;
+    max-height: 300px;
+    max-width: 215px;
+    overflow-y: auto;
   }
 `;
 
