@@ -10,6 +10,10 @@ export default function MenuPage() {
   const [cartCards, setCartCards] = useState([]);
 
   const handleAddToCart = async (card) => {
+    if (isInCart(card)) {
+      alert("Carta já está no seu carrinho");
+      return;
+    }
     const confirmAddToCart = window.confirm(
       `Deseja adicionar a carta ${card.name} no seu carrinho?`
     );
