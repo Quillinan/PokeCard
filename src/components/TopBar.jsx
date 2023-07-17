@@ -60,8 +60,8 @@ const TopBarContainer = styled.div`
   flex-direction: row;
   justify-content: center;
 
-  width: calc(100vw - 90px);
-  padding: 0 45px;
+  width: calc(100vw - 40px);
+  padding: 0 20px;
   div {
     display: flex;
     flex-direction: row;
