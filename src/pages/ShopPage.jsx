@@ -12,7 +12,6 @@ export default function ShopPage() {
   const navigate = useNavigate();
 
   const getActiveCarts = async () => {
-    console.log(token);
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/cart/user-active-carts`,
@@ -23,7 +22,6 @@ export default function ShopPage() {
         }
       );
       setCarts(response.data.carts);
-      console.log(carts);
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -63,7 +61,6 @@ export default function ShopPage() {
       `Deseja remover a carta ${card.name} no seu carrinho?`
     );
     if (confirmAddToCart) {
-      console.log(token);
       try {
         const response = await axios.delete(
           `${import.meta.env.VITE_API_URL}/cart/remove-from-cart`,

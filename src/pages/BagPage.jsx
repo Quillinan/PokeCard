@@ -16,7 +16,6 @@ export default function BagPage() {
       `Deseja remover a carta ${card.name} no seu carrinho?`
     );
     if (confirmAddToCart) {
-      console.log(token);
       try {
         const response = await axios.delete(
           `${import.meta.env.VITE_API_URL}/cart/remove-from-cart`,
@@ -67,7 +66,6 @@ export default function BagPage() {
   const handleCheckout = async () => {
     const confirmAddToCart = window.confirm(`Deseja finalizar o pedido?`);
     if (confirmAddToCart) {
-      console.log(token);
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_API_URL}/cart/checkout`,
