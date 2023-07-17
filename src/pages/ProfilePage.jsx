@@ -3,6 +3,7 @@ import styled from "styled-components";
 import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import TopBar from "../components/TopBar";
+import CardItem from "../components/Card";
 
 export default function ProfilePage() {
   const [cards, setCards] = useState([]);
@@ -32,6 +33,18 @@ export default function ProfilePage() {
     console.log("Busca cartas vendidas");
   };
 
+  const handleAddToCart = async (card) => {
+    return null;
+  };
+
+  const NotInCart = (card) => {
+    return false;
+  };
+
+  const handleRemoveFromCart = async (card) => {
+    return null;
+  };
+
   useEffect(() => {
     getSoldCards();
   }, []);
@@ -58,16 +71,13 @@ export default function ProfilePage() {
           </NoResult>
         ) : (
           cards.map((card) => (
-            <Card key={card._id}>
-              <h2 className="name">{card.name}</h2>
-              <img
-                className="cardImg"
-                onClick={() => handleAddToCart(card)}
-                src={"PikachuImage.svg"}
-                alt=""
-              />
-              <h2>R$ {card.value.toFixed(2)}</h2>
-            </Card>
+            <CardItem
+              key={card._id}
+              card={card}
+              handleAddToCart={handleAddToCart}
+              handleRemoveFromCart={handleRemoveFromCart}
+              isInCart={NotInCart}
+            />
           ))
         )}
       </CardContainer>

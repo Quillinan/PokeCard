@@ -3,6 +3,7 @@ import styled from "styled-components";
 import SearchBar from "../components/SearchBar";
 import axios from "axios";
 import TopBar from "../components/TopBar";
+import CardItem from "../components/Card";
 
 export default function BagPage() {
   const [cards, setCards] = useState([]);
@@ -92,6 +93,14 @@ export default function BagPage() {
     }
   };
 
+  const isInCart = (card) => {
+    return true;
+  };
+
+  const handleAddToCart = async (card) => {
+    return null;
+  };
+
   useEffect(() => {
     updateCardsList();
   }, []);
@@ -112,17 +121,13 @@ export default function BagPage() {
           </NoResult>
         ) : (
           cards.map((card) => (
-            <Card key={card._id}>
-              <h2 className="name">{card.name}</h2>
-              <img className="cardImg" src={"PikachuImage.svg"} alt="" />
-              <h2>R$ {card.value.toFixed(2)}</h2>
-              <div
-                className="overlay"
-                onClick={() => handleRemoveFromCart(card)}
-              >
-                <img src="Multiply.svg" alt="" />
-              </div>
-            </Card>
+            <CardItem
+              key={card._id}
+              card={card}
+              handleAddToCart={handleAddToCart}
+              handleRemoveFromCart={handleRemoveFromCart}
+              isInCart={isInCart}
+            />
           ))
         )}
       </CardContainer>

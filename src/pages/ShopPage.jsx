@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import TopBar from "../components/TopBar";
+import CardItem from "../components/Card";
 
 export default function ShopPage() {
   const token = localStorage.getItem("token");
@@ -51,6 +52,44 @@ export default function ShopPage() {
     }
   };
 
+  const handleAddToCart = async (card) => {
+    return null;
+  };
+
+  const handleRemoveFromCart = async (card) => {
+    const confirmAddToCart = window.confirm(
+      `Deseja remover a carta ${card.name} no seu carrinho?`
+    );
+    if (confirmAddToCart) {
+      console.log(token);
+      try {
+        const response = await axios.delete(
+          `${import.meta.env.VITE_API_URL}/cart/remove-from-cart`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            data: {
+              cardId: card._id,
+            },
+          }
+        );
+        if (response.status === 200) {
+          alert("Carta removida do seu carrinho");
+          getActiveCarts();
+          updateCardsList();
+        }
+      } catch (error) {
+        if (error.response.status === 404) {
+          alert("Erro com seu carrinho");
+        } else {
+          alert("Desculpe, ocorreu um erro inesperado");
+          console.log(error.response.data);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     getActiveCarts();
     updateCardsList();
@@ -82,19 +121,13 @@ export default function ShopPage() {
               </h1>
               <CardContainer>
                 {cart.cards.map((card) => (
-                  <Card key={card._id}>
-                    <h2 className="name">{card.name}</h2>
-                    <img className="cardImg" src={"PikachuImage.svg"} alt="" />
-                    <h2>R$ {card.value.toFixed(2)}</h2>
-                    {isInCart(card) && (
-                      <div
-                        className="overlay"
-                        onClick={() => handleRemoveFromCart(card)}
-                      >
-                        <img src="Multiply.svg" alt="" />
-                      </div>
-                    )}
-                  </Card>
+                  <CardItem
+                    key={card._id}
+                    card={card}
+                    handleAddToCart={handleAddToCart}
+                    handleRemoveFromCart={handleRemoveFromCart}
+                    isInCart={isInCart}
+                  />
                 ))}
               </CardContainer>
             </CartContainer>
