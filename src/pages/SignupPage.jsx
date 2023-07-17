@@ -92,13 +92,15 @@ const SignupContainer = styled.div`
   width: calc(100% - 50px);
   img {
     margin-bottom: 50px;
+    width: fit-content;
+    height: fit-content;
   }
   @media (max-width: 600px) {
-    width: calc(100% - 20px);
-    height: calc(100% - 20px);
-    padding: 10px;
+    width: 100%;
+    height: 100%;
+    padding: 0;
     img {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
   }
 `;
@@ -143,14 +145,15 @@ const BoxContainer = styled.div`
   }
 
   @media (max-width: 600px) {
-    width: calc(100% - 30px);
-    height: calc(80% - 30px);
-    padding: 15px;
+    padding: 0;
+    width: 100%;
+    height: 100%;
     div {
-      margin: 15px 0;
+      margin: 10px 0 15px;
     }
     .title {
-      margin-bottom: 15px;
+      margin-bottom: 0;
+      font-size: 25px;
     }
     h1 {
       font-size: 25px;
@@ -161,7 +164,7 @@ const BoxContainer = styled.div`
     }
     .subtitle {
       margin-top: 10px;
-      font-size: 20px;
+      font-size: 25px;
     }
     button {
       margin-top: 15px;

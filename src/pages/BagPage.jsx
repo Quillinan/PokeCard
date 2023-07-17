@@ -42,6 +42,7 @@ export default function BagPage() {
   };
 
   const updateCardsList = async () => {
+    const token = localStorage.getItem("token");
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/cart/get-cards-on-cart`,
@@ -75,9 +76,8 @@ export default function BagPage() {
           }
         );
         if (response.status === 200) {
-          const newToken = response.data.token;
-          console.log(newToken);
-          // localStorage.setItem("token", newToken);
+          const newToken = response.data.newToken;
+          localStorage.setItem("token", newToken);
           alert("Compra finalizada com sucesso");
           updateCardsList();
         }
@@ -115,7 +115,7 @@ export default function BagPage() {
             <Card key={card._id}>
               <h2 className="name">{card.name}</h2>
               <img className="cardImg" src={"PikachuImage.svg"} alt="" />
-              <h2>R$ {card.value}</h2>
+              <h2>R$ {card.value.toFixed(2)}</h2>
               <div
                 className="overlay"
                 onClick={() => handleRemoveFromCart(card)}
@@ -143,7 +143,9 @@ const MenuContainer = styled.div`
   gap: 40px;
   margin-top: 60px;
   @media (max-width: 471px) {
-    overflow: hidden;
+    padding: 0;
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -185,7 +187,6 @@ const CardContainer = styled.div`
 
   gap: 16px;
   padding: 30px;
-  overflow-y: auto;
 
   border-radius: 10px;
   border: 1px solid #151515;
@@ -193,6 +194,8 @@ const CardContainer = styled.div`
   @media (max-width: 471px) {
     justify-content: center;
     gap: 30px;
+    padding: 0;
+    width: 100%;
   }
 `;
 

@@ -19,10 +19,8 @@ export default function LoginPage() {
           password,
         }
       );
-      console.log(response);
       const { token } = response.data;
       localStorage.setItem("token", token);
-      console.log(token);
       navigate("/menu");
     } catch (error) {
       console.log(error.response.data);
@@ -73,6 +71,8 @@ const LoginContainer = styled.div`
   width: calc(100% - 100px);
   img {
     margin-bottom: 40px;
+    width: fit-content;
+    height: fit-content;
   }
   @media (max-width: 600px) {
     width: calc(100% - 30px);

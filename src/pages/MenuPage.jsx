@@ -87,7 +87,9 @@ export default function MenuPage() {
           },
         }
       );
-      setCards(response.data);
+      const filteredCards = response.data.filter((card) => !card.sold);
+
+      setCards(filteredCards);
     } catch (error) {
       alert("Desculpe, ocorreu um erro inesperado");
       console.log(error);
@@ -214,7 +216,9 @@ const MenuContainer = styled.div`
   gap: 40px;
   margin-top: 60px;
   @media (max-width: 471px) {
-    overflow: hidden;
+    padding: 0;
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -262,6 +266,8 @@ const CardContainer = styled.div`
   @media (max-width: 471px) {
     justify-content: center;
     gap: 30px;
+    padding: 0;
+    width: 100%;
   }
 `;
 
