@@ -184,7 +184,7 @@ export default function MenuPage() {
                 src={"PikachuImage.svg"}
                 alt=""
               />
-              <h2>R$ {card.value}</h2>
+              <h2>R$ {card.value.toFixed(2)}</h2>
               {isInCart(card) && (
                 <div
                   className="overlay"
