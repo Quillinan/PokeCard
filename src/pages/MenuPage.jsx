@@ -222,6 +222,13 @@ const MenuContainer = styled.div`
   padding: 20px;
   gap: 40px;
   margin-top: 50px;
+  h1 {
+    font-size: 36px;
+  }
+  h2 {
+    font-family: "Poppins";
+    font-size: 18px;
+  }
   @media (max-width: 471px) {
     height: 100%;
     width: 100%;

@@ -18,14 +18,6 @@ const GlobalStyle = createGlobalStyle`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     height: 55px;
   }
-
-  h1 {
-    font-size: 36px;
-  }
-  h2 {
-    font-family: 'Poppins';
-    font-size: 18px;
-  }
   img{
     width: 36px;
     height: 36px;

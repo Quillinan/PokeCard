@@ -155,6 +155,13 @@ const ShopContainer = styled.div`
   gap: 20px;
   margin-top: 60px;
   overflow-y: auto;
+  h1 {
+    font-size: 36px;
+  }
+  h2 {
+    font-family: "Poppins";
+    font-size: 18px;
+  }
   @media (max-width: 471px) {
     padding: 0;
     height: 100%;

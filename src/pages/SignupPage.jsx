@@ -95,6 +95,13 @@ const SignupContainer = styled.div`
     width: fit-content;
     height: fit-content;
   }
+  h1 {
+    font-size: 36px;
+  }
+  h2 {
+    font-family: "Poppins";
+    font-size: 18px;
+  }
   @media (max-width: 600px) {
     width: 100%;
     height: 100%;
