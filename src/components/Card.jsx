@@ -66,22 +66,21 @@ const Card = styled.div`
   justify-content: space-around;
   flex-direction: column;
 
-  background: #fff;
+  background: #fff06d;
   border-radius: 15px;
-  border: 1px solid #000;
+  border: 5px solid #fff06d;
   position: relative;
 
-  width: 150px;
-  height: 200px;
+  width: 250px;
+  height: 350px;
 
   .name {
     align-self: flex-start;
     margin-left: 10px;
   }
   .cardImg {
-    border: #000 1px solid;
-    width: 100%;
-    height: 70%;
+    width: 250px;
+    height: 300px;
   }
   .overlay {
     position: absolute;

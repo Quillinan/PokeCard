@@ -216,12 +216,12 @@ const MenuContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100% - 40px);
-  width: calc(100% - 40px);
-  max-width: 806px;
-  padding: 20px;
+  height: calc(100% - 80px);
+  width: calc(100% - 80px);
+  padding: 40px;
   gap: 40px;
   margin-top: 50px;
+  max-width: 1426px;
   h1 {
     font-size: 36px;
   }
@@ -284,6 +284,6 @@ const CardContainer = styled.div`
     gap: 30px;
     max-height: 300px;
     max-width: 215px;
-    overflow-y: auto;
+    overflow-x: hidden;
   }
 `;

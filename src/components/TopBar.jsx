@@ -84,7 +84,7 @@ const IconsContainer = styled.div`
   justify-content: space-between;
   width: 100%;
 
-  max-width: 806px;
+  max-width: 1426px;
 `;
 
 export default TopBar;

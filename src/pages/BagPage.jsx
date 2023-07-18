@@ -145,10 +145,10 @@ const BagContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100% - 40px);
-  width: calc(100% - 40px);
-  max-width: 806px;
-  padding: 20px;
+  height: calc(100% - 80px);
+  width: calc(100% - 80px);
+  max-width: 1426px;
+  padding: 40px;
   gap: 40px;
   margin-top: 50px;
   h1 {
@@ -213,46 +213,6 @@ const CardContainer = styled.div`
     gap: 30px;
     max-height: 300px;
     max-width: 215px;
-    overflow-y: auto;
-  }
-`;
-
-const Card = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-
-  background: #fff;
-  border-radius: 15px;
-  border: 1px solid #000;
-  position: relative;
-
-  width: 150px;
-  height: 200px;
-
-  .name {
-    align-self: flex-start;
-    margin-left: 10px;
-  }
-  .cardImg {
-    border: #000 1px solid;
-    width: 100%;
-    height: 70%;
-  }
-  .overlay {
-    position: absolute;
-    top: -3%;
-    right: -8%;
-    width: 30px;
-    height: 30px;
-    background-color: #ffc7c7;
-    border-radius: 50%;
-    cursor: pointer;
-    img {
-      width: 100%;
-      height: 100%;
-      rotate: 45deg;
-    }
+    overflow-x: hidden;
   }
 `;
