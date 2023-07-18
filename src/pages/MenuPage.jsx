@@ -72,7 +72,6 @@ export default function MenuPage() {
           updateCardsList();
           fetchCards();
         }
-        console.log(response.data);
       } catch (error) {
         if (error.response.status === 404) {
           alert("Carta ou Carrinho não encontrados");
@@ -94,9 +93,14 @@ export default function MenuPage() {
           },
         }
       );
+
       const filteredCards = response.data.filter((card) => !card.sold);
 
-      setCards(filteredCards);
+      if (Array.isArray(filteredCards) && filteredCards.length > 0) {
+        setCards(filteredCards);
+      } else {
+        setCards([]);
+      }
     } catch (error) {
       alert("Desculpe, ocorreu um erro inesperado");
       console.log(error);
@@ -115,6 +119,9 @@ export default function MenuPage() {
       );
       if (response.status === 200 || !response.data.cards.length) {
         setCartCards(response.data.cards);
+      }
+      if (!response.data.cards.length) {
+        setCartCards([]);
       }
     } catch (error) {
       alert("Desculpe, ocorreu um erro inesperado");

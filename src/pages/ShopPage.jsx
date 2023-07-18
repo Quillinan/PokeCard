@@ -21,9 +21,12 @@ export default function ShopPage() {
           },
         }
       );
-      setCarts(response.data.carts);
-      console.log(response.data);
-      return response.data;
+
+      if (Array.isArray(response.data.carts)) {
+        setCarts(response.data.carts);
+      } else {
+        setCarts([]);
+      }
     } catch (error) {
       console.log(error);
     }

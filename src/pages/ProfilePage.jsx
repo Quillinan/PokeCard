@@ -32,7 +32,6 @@ export default function ProfilePage() {
       alert("Desculpe, ocorreu um erro inesperado");
       console.log(error);
     }
-    console.log("Busca cartas vendidas");
   };
 
   const handleAddToCart = async (card) => {
