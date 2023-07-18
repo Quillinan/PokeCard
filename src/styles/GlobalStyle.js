@@ -1,12 +1,11 @@
 import { createGlobalStyle, styled } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  * {
+  *{
     font-family: 'VT323';
     font-style: normal;
     font-weight: 400;
-  }
-
+  } 
   button {
     border-radius: 10px;
     border: 1px solid #151515;

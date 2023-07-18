@@ -74,6 +74,13 @@ const LoginContainer = styled.div`
     width: fit-content;
     height: fit-content;
   }
+  h1 {
+    font-size: 36px;
+  }
+  h2 {
+    font-family: "Poppins";
+    font-size: 18px;
+  }
   @media (max-width: 600px) {
     width: calc(100% - 30px);
     height: calc(80% - 30px);
