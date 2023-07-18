@@ -40,7 +40,7 @@ export default function SignupPage() {
 
   return (
     <SignupContainer>
-      <img src="/Logo.svg" alt="" />
+      <img src="/Logo.png" alt="" />
       <BoxContainer>
         <div>
           <h1 className="title">CADASTRO</h1>
@@ -93,7 +93,7 @@ const SignupContainer = styled.div`
   img {
     margin-bottom: 50px;
     width: fit-content;
-    height: fit-content;
+    height: 160px;
   }
   h1 {
     font-size: 36px;
@@ -102,7 +102,7 @@ const SignupContainer = styled.div`
     font-family: "Poppins";
     font-size: 18px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 767px) {
     width: 100%;
     height: 100%;
     padding: 0;
@@ -146,12 +146,12 @@ const BoxContainer = styled.div`
     cursor: pointer;
   }
 
-  @media (min-width: 601px) and (min-height: 601px) {
+  @media (min-width: 768px) {
     border-radius: 10px;
     border: 1px solid #151515;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 767px) {
     padding: 0;
     width: 100%;
     height: 100%;
@@ -167,7 +167,7 @@ const BoxContainer = styled.div`
     }
     input {
       font-size: 25px;
-      height: 40px;
+      height: 35px;
     }
     .subtitle {
       margin-top: 10px;

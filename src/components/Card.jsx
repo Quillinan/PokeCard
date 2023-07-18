@@ -72,7 +72,7 @@ const Card = styled.div`
   position: relative;
 
   width: 250px;
-  height: 350px;
+  height: 355px;
 
   .name {
     align-self: flex-start;

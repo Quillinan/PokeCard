@@ -15,7 +15,7 @@ export default function CapePage() {
   return (
     <CapeContainer>
       <BoxContainer>
-        <img src="/Logo.svg" alt="" />
+        <img src="/Logo.png" alt="" />
         <img className="image" src="/PikachuImage.svg" alt="" />
         <button onClick={handleLoginClick}>Login</button>
         <button onClick={handleRegisterClick}>Cadastro</button>
@@ -50,7 +50,7 @@ const BoxContainer = styled.div`
 
   img {
     width: fit-content;
-    height: fit-content;
+    height: 160px;
   }
   @media (min-width: 676px) and (min-height: 601px) {
     border-radius: 10px;

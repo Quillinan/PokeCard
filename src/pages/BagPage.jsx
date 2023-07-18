@@ -145,12 +145,12 @@ const BagContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100% - 80px);
+  height: calc(100% - 40px);
   width: calc(100% - 80px);
-  max-width: 1426px;
-  padding: 40px;
+  padding: 20px 40px;
   gap: 40px;
-  margin-top: 50px;
+  margin-top: 40px;
+  max-width: 1426px;
   h1 {
     font-size: 36px;
   }
@@ -158,12 +158,12 @@ const BagContainer = styled.div`
     font-family: "Poppins";
     font-size: 18px;
   }
-  @media (max-width: 471px) {
+  overflow: hidden;
+  @media (max-width: 767px) {
     height: 100%;
     width: 100%;
     padding: 0px;
     gap: 20px;
-    overflow-y: auto;
   }
 `;
 
@@ -184,8 +184,11 @@ const NoResult = styled.div`
   img {
     width: 100%;
     height: 100%;
+
+    max-width: 400px;
+    max-height: 400px;
   }
-  @media (max-width: 471px) {
+  @media (max-width: 767px) {
     img {
       width: 200px;
       height: 200px;
@@ -195,11 +198,12 @@ const NoResult = styled.div`
 
 const CardContainer = styled.div`
   background-color: #fffdc7;
-  width: calc(100%-60px);
+  width: calc(80% - 62px);
+  height: calc(75% - 62px);
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: center;
 
   gap: 16px;
   padding: 30px;
@@ -208,11 +212,10 @@ const CardContainer = styled.div`
   border-radius: 10px;
   border: 1px solid #151515;
 
-  @media (max-width: 471px) {
-    justify-content: center;
+  @media (max-width: 767px) {
+    width: calc(100% - 62px);
+    overflow-x: hidden;
     gap: 30px;
     max-height: 300px;
-    max-width: 215px;
-    overflow-x: hidden;
   }
 `;

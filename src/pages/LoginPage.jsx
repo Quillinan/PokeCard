@@ -33,25 +33,26 @@ export default function LoginPage() {
 
   return (
     <LoginContainer>
-      <img src="/Logo.svg" alt="" />
+      <img src="/Logo.png" alt="" />
       <BoxContainer>
-        <div>
-          <h1 className="title">LOGIN</h1>
-          <h1>E-mail</h1>
-          <StylizedInput
-            type="email"
-            placeholder="Nome ou Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <h1 className="password">Senha</h1>
-          <StylizedInput
-            placeholder="Senha"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        <h1 className="title">LOGIN</h1>
+
+        <h1>E-mail</h1>
+        <StylizedInput
+          type="email"
+          placeholder="Nome ou Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <h1 className="password">Senha</h1>
+        <StylizedInput
+          placeholder="Senha"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
         <h1 className="signup" onClick={handleSignupClick}>
           Não tem conta? Registre-se
         </h1>
@@ -72,7 +73,7 @@ const LoginContainer = styled.div`
   img {
     margin-bottom: 40px;
     width: fit-content;
-    height: fit-content;
+    height: 160px;
   }
   h1 {
     font-size: 36px;
@@ -81,7 +82,10 @@ const LoginContainer = styled.div`
     font-family: "Poppins";
     font-size: 18px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 767px) {
+    img {
+      margin-bottom: 20px;
+    }
     width: 100%;
     height: 100%;
     padding: 0;
@@ -93,55 +97,45 @@ const BoxContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 600px;
-  max-height: 600px;
 
-  width: calc(100% - 100px);
-  height: calc(80% - 100px);
-  padding: 50px;
+  padding: 50px 60px;
+
   .title {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    margin-top: 0px;
   }
 
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: self-start;
-    width: 100%;
-    margin: 35px 0;
+  h1 {
+    align-self: flex-start;
+    margin-top: 40px;
   }
-  .password {
-    margin-top: 20px;
-  }
+
   button {
-    margin-top: 30px;
-  }
-  .signup {
-    text-align: center;
-    text-decoration: underline;
-    cursor: pointer;
+    margin-top: 40px;
   }
 
-  @media (min-width: 601px) and (min-height: 601px) {
+  input {
+    margin-top: 5px;
+  }
+
+  @media (min-width: 768px) {
     border-radius: 10px;
     border: 1px solid #151515;
   }
-  @media (max-width: 471px) {
-    div {
-      margin: 20px 0;
-    }
-  }
 
-  @media (max-width: 600px) {
-    width: calc(100% - 30px);
-    height: calc(80% - 30px);
-    padding: 15px;
+  @media (max-width: 767px) {
+    padding: 0;
+    .title {
+      font-size: 36px;
+      margin: 0px;
+    }
     h1 {
+      margin-top: 20px;
       font-size: 25px;
     }
-    input {
-      font-size: 25px;
-      height: 40px;
+
+    button {
+      margin-top: 20px;
     }
   }
 `;

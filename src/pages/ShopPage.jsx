@@ -11,6 +11,7 @@ export default function ShopPage() {
   const [cartCards, setCartCards] = useState([]);
   const navigate = useNavigate();
 
+  console.log(token);
   const getActiveCarts = async () => {
     try {
       const response = await axios.get(
@@ -148,12 +149,12 @@ const ShopContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: calc(100% - 80px);
+  height: calc(100% - 40px);
   width: calc(100% - 80px);
+  padding: 20px 40px;
+  gap: 40px;
+  margin-top: 40px;
   max-width: 1426px;
-  padding: 40px;
-  gap: 20px;
-  margin-top: 60px;
   overflow-y: auto;
   h1 {
     font-size: 36px;
@@ -162,7 +163,7 @@ const ShopContainer = styled.div`
     font-family: "Poppins";
     font-size: 18px;
   }
-  @media (max-width: 471px) {
+  @media (max-width: 767px) {
     padding: 0;
     height: 100%;
     width: 100%;
@@ -193,7 +194,7 @@ const NoResult = styled.div`
     max-width: 400px;
     max-height: 400px;
   }
-  @media (max-width: 471px) {
+  @media (max-width: 767px) {
     img {
       width: 200px;
       height: 200px;
@@ -215,7 +216,7 @@ const CartContainer = styled.div`
   border: 1px solid #151515;
   overflow-y: auto;
 
-  @media (max-width: 471px) {
+  @media (max-width: 767px) {
     padding: 15px;
     max-width: 250px;
     overflow-x: hidden;
@@ -234,7 +235,7 @@ const CardContainer = styled.div`
   padding: 15px;
   margin: 10px 0 10px;
 
-  @media (max-width: 471px) {
+  @media (max-width: 767px) {
     justify-content: center;
     gap: 30px;
     padding: 10px;

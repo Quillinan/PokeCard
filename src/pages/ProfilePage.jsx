@@ -61,13 +61,13 @@ export default function ProfilePage() {
         <img src="UserIcon.svg" alt="" />
         <h1>Vendas</h1>
       </Line>
-      <h1>
-        Total: R${" "}
+      <SearchBar />
+      <h2>
+        Total das vendas: R${" "}
         {cards.length > 0
           ? cards.reduce((sum, card) => sum + card.value, 0).toFixed(2)
           : 0}
-      </h1>
-      <SearchBar />
+      </h2>
       <CardContainer>
         {cards.length === 0 ? (
           <NoResult>
@@ -96,12 +96,12 @@ const ProfileContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100% - 80px);
+  height: calc(100% - 40px);
   width: calc(100% - 80px);
-  max-width: 1426px;
-  padding: 40px;
+  padding: 20px 40px;
   gap: 40px;
-  margin-top: 50px;
+  margin-top: 40px;
+  max-width: 1426px;
   h1 {
     font-size: 36px;
   }
@@ -109,12 +109,21 @@ const ProfileContainer = styled.div`
     font-family: "Poppins";
     font-size: 18px;
   }
-  @media (max-width: 471px) {
+  overflow: hidden;
+  @media (max-width: 767px) {
+    margin-top: 50px;
     height: 100%;
     width: 100%;
     padding: 0px;
     gap: 20px;
-    overflow-y: auto;
+  }
+  @media (min-width: 768px) {
+    h2 {
+      font-family: "VT323";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 36px;
+    }
   }
 `;
 
@@ -135,8 +144,11 @@ const NoResult = styled.div`
   img {
     width: 100%;
     height: 100%;
+
+    max-width: 400px;
+    max-height: 400px;
   }
-  @media (max-width: 471px) {
+  @media (max-width: 767px) {
     img {
       width: 200px;
       height: 200px;
@@ -146,24 +158,24 @@ const NoResult = styled.div`
 
 const CardContainer = styled.div`
   background-color: #fffdc7;
-  width: calc(100%-60px);
+  width: calc(90% - 32px);
+  max-height: calc(65% - 32px);
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: center;
 
   gap: 16px;
-  padding: 30px;
+  padding: 15px;
   overflow-y: auto;
 
   border-radius: 10px;
   border: 1px solid #151515;
 
-  @media (max-width: 471px) {
-    justify-content: center;
+  @media (max-width: 767px) {
+    width: calc(100% - 62px);
+    overflow-x: hidden;
     gap: 30px;
     max-height: 300px;
-    max-width: 215px;
-    overflow-x: hidden;
   }
 `;

@@ -60,8 +60,8 @@ const TopBarContainer = styled.div`
   flex-direction: row;
   justify-content: center;
 
-  width: calc(100vw - 80px);
-  padding: 0 40px;
+  width: calc(100vw - 120px);
+  padding: 0 60px;
   div {
     display: flex;
     flex-direction: row;
@@ -71,7 +71,7 @@ const TopBarContainer = styled.div`
   img {
     cursor: pointer;
   }
-  @media (max-width: 471px) {
+  @media (max-width: 767px) {
     padding: 0 20px 0;
     width: calc(100vw - 40px);
   }
