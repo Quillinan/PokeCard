@@ -11,7 +11,6 @@ export default function ShopPage() {
   const [cartCards, setCartCards] = useState([]);
   const navigate = useNavigate();
 
-  console.log(token);
   const getActiveCarts = async () => {
     try {
       const response = await axios.get(
