@@ -1,6 +1,7 @@
 # PokeCard-front
 
-Front-end do projeto de um marketplace de cards de Pokemon.
+Front-end do projeto fullstack de um marketplace de cards de Pokemon.
+Repositório do back: https://github.com/Quillinan/PokeCards-back
 
 Comandos:
 
@@ -8,3 +9,5 @@ Comandos:
 - cd PokeCards-front
 - npm i
 - npm run dev
+
+
